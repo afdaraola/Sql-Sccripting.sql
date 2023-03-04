@@ -88,4 +88,16 @@ where a.departmentid = b.id
 and 3 > (select count (distinct salary) from employee e where e.salary > a.salary
  and e.departmentid = a.departmentid)
  
+ --using window fuuction 
+ 
+ SELECT Department, employee, salary FROM (
+    SELECT d.name AS Department
+        , e.name AS employee
+        , e.salary
+        , DENSE_RANK() OVER (PARTITION BY d.name ORDER BY e.salary DESC) AS drk
+    FROM Employee e , Department d where e.DepartmentId= d.Id
+) t WHERE t.drk <= 3
+
+
+ 
  
