@@ -16,7 +16,7 @@ INSERT INTO sales_history(order_id, sales_date, salesperson, order_value) VALUES
 INSERT INTO sales_history(order_id, sales_date, salesperson, order_value) VALUES  (8, '12-jan-2021', 'Sarah', 16);
 INSERT INTO sales_history(order_id, sales_date, salesperson, order_value) VALUES  (9, '13-jan-2021', 'John', 4);
 
-
+commit; 
 
 select order_id, sales_date, salesperson, order_value , sum(order_value) over(PARTITION BY salesperson order by sales_date asc) running_total
 from sales_history 
